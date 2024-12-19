@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="mb-4 flex justify-between">
+    <h2 class="text-lg font-bold">Liste des Classes</h2>
+    <a href="{{ path('add_classe') }}" class="mb-4 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        Ajouter une Classe
+    </a>
+</div>
+<table class="table-auto border-collapse border border-gray-400 w-full bg-white shadow-md rounded-lg">
+    <thead>
+        <tr class="bg-blue-600 text-white">
+            <th class="border border-gray-300 px-4 py-2">ID</th>
+            <th class="border border-gray-300 px-4 py-2">Nom</th>
+            <th class="border border-gray-300 px-4 py-2">Cours</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for classe in classes %}
+        <tr class="hover:bg-gray-100">
+            <td class="border border-gray-300 px-4 py-2">{{ classe.id }}</td>
+            <td class="border border-gray-300 px-4 py-2">{{ classe.nomClasse }}</td>
+            <td class="border border-gray-300 px-4 py-2">
+                <a href="{{ path('cours_by_classe', { id: classe.id }) }}" class="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">Consulter</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

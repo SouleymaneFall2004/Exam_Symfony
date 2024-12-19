@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="max-w-4xl mx-auto mt-10">
+    <h2 class="text-xl font-bold mb-4">
+        Liste des cours :
+    </h2>
+    <table class="table-auto border-collapse border border-gray-400 w-full bg-white shadow-md rounded-lg">
+        <thead>
+            <tr class="bg-blue-600 text-white">
+                <th class="border border-gray-300 px-4 py-2">Nom du Cours</th>
+                <th class="border border-gray-300 px-4 py-2">Niveau</th>
+                <th class="border border-gray-300 px-4 py-2">Professeur</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cours in cours %}
+                <tr class="text-center">
+                    <td class="border border-gray-300 px-4 py-2">{{ cours.nomCours }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ cours.niveau.nomNiveau }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ cours.professeur.nomProfesseur }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

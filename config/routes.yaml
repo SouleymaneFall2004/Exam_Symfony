@@ -3,3 +3,19 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+index:
+    path: /
+    controller: App\Controller\NiveauController::list
+
+professeurs_list:
+    path: /professeurs
+    controller: App\Controller\ProfesseurController::list
+
+niveaux_list:
+    path: /niveaux
+    controller: App\Controller\NiveauController::list
+
+classes_list:
+    path: /classes
+    controller: App\Controller\ClasseController::list
