@@ -2,21 +2,21 @@
 
 namespace App\Repository;
 
-use App\Entity\Classe;
+use App\Entity\Cours;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Classe>
+ * @extends ServiceEntityRepository<Cours>
  */
-class ClasseRepository extends ServiceEntityRepository
+class CoursRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Classe::class);
+        parent::__construct($registry, Cours::class);
     }
 
-    public function save(Classe $entity, bool $flush = false): void
+    public function save(Cours $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -25,7 +25,7 @@ class ClasseRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Classe $entity, bool $flush = false): void
+    public function remove(Cours $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -34,10 +34,10 @@ class ClasseRepository extends ServiceEntityRepository
         }
     }
 
-    public function findByNomClasse(string $nom): array
+    public function findByNomCours(string $nom): array
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.nomClasse LIKE :nom')
+            ->andWhere('c.nomCours LIKE :nom')
             ->setParameter('nom', '%' . $nom . '%')
             ->orderBy('c.id', 'ASC')
             ->getQuery()

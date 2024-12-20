@@ -2,21 +2,21 @@
 
 namespace App\Repository;
 
-use App\Entity\Classe;
+use App\Entity\Niveau;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Classe>
+ * @extends ServiceEntityRepository<Niveau>
  */
-class ClasseRepository extends ServiceEntityRepository
+class NiveauRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Classe::class);
+        parent::__construct($registry, Niveau::class);
     }
 
-    public function save(Classe $entity, bool $flush = false): void
+    public function save(Niveau $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -25,7 +25,7 @@ class ClasseRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Classe $entity, bool $flush = false): void
+    public function remove(Niveau $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -34,12 +34,12 @@ class ClasseRepository extends ServiceEntityRepository
         }
     }
 
-    public function findByNomClasse(string $nom): array
+    public function findByNomNiveau(string $nom): array
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.nomClasse LIKE :nom')
+        return $this->createQueryBuilder('n')
+            ->andWhere('n.nomNiveau LIKE :nom')
             ->setParameter('nom', '%' . $nom . '%')
-            ->orderBy('c.id', 'ASC')
+            ->orderBy('n.id', 'ASC')
             ->getQuery()
             ->getResult();
     }
